@@ -12,14 +12,40 @@ package models;
  */
 public class Student {
     
-    private int id;
+    private int id = 50060000;
     private double cijfer;
     private Klas klas;
+    
+    
+    public Student() {
+        id++;
+    }
 
-    public Student(int id, double cijfer, Klas klas) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public double getCijfer() {
+        return cijfer;
+    }
+
+    public void setCijfer(double cijfer) {
         this.cijfer = cijfer;
+    }
+
+    public Klas getKlas() {
+        return klas;
+    }
+
+    public void setKlas(Klas klas) {
         this.klas = klas;
     }
+    
+    
+    
     
 }

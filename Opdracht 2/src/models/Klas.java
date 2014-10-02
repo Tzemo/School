@@ -12,15 +12,18 @@ package models;
  */
 public class Klas {
     
-    private String klas;
+    private String klas = "I";
+    private Student[] students = new Student[32];
 
     public String getKlas() {
         return klas;
     }
 
     public void setKlas(String klas) {
-        this.klas = klas;
+        this.klas += klas;
     }
+    
+    
     
     
     
