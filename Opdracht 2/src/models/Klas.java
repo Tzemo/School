@@ -10,16 +10,20 @@ package models;
  *
  * @author duytran
  */
-public class Student {
+public class Klas {
     
-    private int id;
-    private double cijfer;
-    private Klas klas;
+    private String klas;
 
-    public Student(int id, double cijfer, Klas klas) {
-        this.id = id;
-        this.cijfer = cijfer;
+    public String getKlas() {
+        return klas;
+    }
+
+    public void setKlas(String klas) {
         this.klas = klas;
     }
+    
+    
+    
+    
     
 }
