@@ -5,6 +5,7 @@
  */
 package opdracht.pkg2;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -72,9 +73,18 @@ public class Opdracht2 {
         // TODO code application logic here
 
         Random generator = new Random();
+        List<Student> studenten = new ArrayList();
         
         
-        for (int i = 0; i < 10; i++) {
+        
+        
+        for (int i = 0; i < 200; i++) {
+            Student s = new Student();
+            s.incrementId(i);
+            double cijfer = generator.nextDouble() * 9 + 1;
+         
+           s.setCijfer(cijfer);
+           studenten.add(s);
             
         }
         
@@ -83,7 +93,7 @@ public class Opdracht2 {
         Klas klas = new Klas();
         List<Klas> klassen = new ArrayList();
 
-        for (int i = 0; i < (int) aantalKlassen(800); i++) {
+        for (int i = 0; i < (int) aantalKlassen(200); i++) {
 
             if (counter <= 3) {
                 if (counter == 0) {
@@ -100,14 +110,28 @@ public class Opdracht2 {
             }
 
         }
+        
+        for (int i = 0; i < klassen.size(); i++) {
+            System.out.println(klassen.get(i).getKlas());
+            
+        }
 
-//        int i = 1;
-//
-//        for (Klas k : klassen) {
-//            System.out.print(i + " ");
-//            System.out.println(k.getKlas());
-//            i++;
-//        }
+        counter = 0;
+        
+        for (int i = 0; i < studenten.size(); i++) {
+            if (counter < klassen.size()) {
+                studenten.get(i).setKlas(klassen.get(counter));
+                counter++;
+                if (counter==klassen.size()) {
+                    counter = 0;
+                }
+               
+                        
+            }
+        }
+        for (Student s : studenten) {
+            System.out.println(s);
+        }
 
     }
 

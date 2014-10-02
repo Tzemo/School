@@ -6,27 +6,32 @@
 
 package models;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author duytran
  */
 public class Student {
     
-    private int id = 50060000;
+    private DecimalFormat formatter = new DecimalFormat("#.0");
+    private int id = 50060001;
     private double cijfer;
+
+    
     private Klas klas;
     
     
     public Student() {
-        id++;
+   
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void incrementId(int id) {
+        this.id += id;
     }
 
     public double getCijfer() {
@@ -34,6 +39,8 @@ public class Student {
     }
 
     public void setCijfer(double cijfer) {
+        
+        formatter.format(cijfer);
         this.cijfer = cijfer;
     }
 
@@ -45,7 +52,10 @@ public class Student {
         this.klas = klas;
     }
     
-    
+    @Override
+    public String toString() {
+        return "Student{" + "id=" + id + ", cijfer=" + formatter.format(cijfer) +  "klas=" + klas.getKlas() +'}';
+    }
     
     
 }
