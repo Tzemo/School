@@ -57,5 +57,4 @@ public class Student {
         return "Student{" + "id=" + id + ", cijfer=" + formatter.format(cijfer) +  ", klas=" + klas.getKlas() +'}';
     }
     
-    
 }

@@ -74,10 +74,7 @@ public class Opdracht2 {
 
         Random generator = new Random();
         List<Student> studenten = new ArrayList();
-        
-        
-        
-        
+ 
         for (int i = 0; i < 800; i++) {
             Student s = new Student();
             s.incrementId(i);
@@ -129,6 +126,7 @@ public class Opdracht2 {
                         
             }
         }
+        
         for (Student s : studenten) {
             System.out.println(s);
         }
