@@ -78,7 +78,7 @@ public class Opdracht2 {
         
         
         
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 800; i++) {
             Student s = new Student();
             s.incrementId(i);
             double cijfer = generator.nextDouble() * 9 + 1;
@@ -93,7 +93,7 @@ public class Opdracht2 {
         Klas klas = new Klas();
         List<Klas> klassen = new ArrayList();
 
-        for (int i = 0; i < (int) aantalKlassen(200); i++) {
+        for (int i = 0; i < (int) aantalKlassen(studenten.size()); i++) {
 
             if (counter <= 3) {
                 if (counter == 0) {

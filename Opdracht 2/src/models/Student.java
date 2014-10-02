@@ -54,7 +54,7 @@ public class Student {
     
     @Override
     public String toString() {
-        return "Student{" + "id=" + id + ", cijfer=" + formatter.format(cijfer) +  "klas=" + klas.getKlas() +'}';
+        return "Student{" + "id=" + id + ", cijfer=" + formatter.format(cijfer) +  ", klas=" + klas.getKlas() +'}';
     }
     
     
