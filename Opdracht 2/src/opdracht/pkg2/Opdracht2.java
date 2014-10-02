@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package opdracht.pkg2;
 
 import java.util.ArrayList;
@@ -16,53 +15,52 @@ import models.Student;
  * @author duytran
  */
 public class Opdracht2 {
-    
+
     public List studentLijst(int aantal) {
-        
+
         Student student = new Student();
-        
+
         List<Student> list = new ArrayList();
-        
+
         return list;
     }
-    
+
     public static double aantalKlassen(int aantalStudenten) {
-        
+
         double aantalKlassen = ((double) aantalStudenten / 32) / 4;
-        
+
         return Math.ceil(aantalKlassen) * 4;
-        
+
     }
-    
-    public static Klas geefKlas(int x) {
-        
+
+    public static Klas geefKlas(int x, int klasNummer) {
+
         Klas klas = new Klas();
-        
-        switch(x) {
-            
+
+        switch (x) {
+
             case 0: {
-                klas.setKlas("G");
+                klas.setKlas("G" + klasNummer);
                 break;
             }
             case 1: {
-                klas.setKlas("N");
+                klas.setKlas("N" + klasNummer);
                 break;
             }
             case 2: {
-                klas.setKlas("S");
+                klas.setKlas("S" + klasNummer);
                 break;
             }
             case 3: {
-                klas.setKlas("T");
+                klas.setKlas("T" + klasNummer);
                 break;
             }
             default:
                 System.out.println("fsf");
                 break;
-            
+
         }
-        
-        
+
         return klas;
     }
 
@@ -71,32 +69,40 @@ public class Opdracht2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+
+//        Random generator = 
         
-        int counter = 0; 
+        int counter = 0;
+        int klasNummer = 200;
         Klas klas = new Klas();
         List<Klas> klassen = new ArrayList();
-        
-        for (int i = 0; i <= (int) aantalKlassen(800); i++) {
-            if (counter < 4) {
-                
-                klas = geefKlas(counter);
+
+        for (int i = 0; i < (int) aantalKlassen(800); i++) {
+
+            if (counter <= 3) {
+                if (counter == 0) {
+                    klasNummer++;
+                }
+                klas = geefKlas(counter, klasNummer);
                 klassen.add(klas);
-                
+
                 counter++;
-            } else {
-                counter = 0;
-                
+
+                if (counter == 4) {
+                    counter = 0;
+                }
             }
+
         }
-        
+
         int i = 1;
-        
+
         for (Klas k : klassen) {
             System.out.print(i + " ");
             System.out.println(k.getKlas());
             i++;
         }
-        
+
     }
-    
+
 }
