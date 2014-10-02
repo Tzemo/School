@@ -7,6 +7,7 @@ package opdracht.pkg2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import models.Klas;
 import models.Student;
 
@@ -70,7 +71,12 @@ public class Opdracht2 {
     public static void main(String[] args) {
         // TODO code application logic here
 
-//        Random generator = 
+        Random generator = new Random();
+        
+        
+        for (int i = 0; i < 10; i++) {
+            
+        }
         
         int counter = 0;
         int klasNummer = 200;
@@ -95,13 +101,13 @@ public class Opdracht2 {
 
         }
 
-        int i = 1;
-
-        for (Klas k : klassen) {
-            System.out.print(i + " ");
-            System.out.println(k.getKlas());
-            i++;
-        }
+//        int i = 1;
+//
+//        for (Klas k : klassen) {
+//            System.out.print(i + " ");
+//            System.out.println(k.getKlas());
+//            i++;
+//        }
 
     }
 
