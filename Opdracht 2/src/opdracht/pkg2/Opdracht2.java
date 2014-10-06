@@ -11,35 +11,13 @@ import java.util.Random;
 import models.Klas;
 import models.Student;
 import nl.hva.dmci.ict.inf.ads.lib.StdRandom;
+import sorting.Sorting;
 
 /**
  *
  * @author duytran
  */
 public class Opdracht2 {
-
-    public static Student[] insertionSort(Klas klas) {
-
-        Student[] lijst = klas.geefStudentenZonderNullTerug();
-
-        for (int i = 1; i < lijst.length; i++) {
-
-            Student temp = lijst[i];
-            int j = i;
-
-            while (j > 0 && lijst[j - 1].getCijfer() < temp.getCijfer()) {
-
-                lijst[j] = lijst[j - 1];
-
-                j--;
-            }
-
-            lijst[j] = temp;
-
-        }
-
-        return lijst;
-    }
 
     public static double aantalKlassen(int aantalStudenten) {
 
@@ -87,16 +65,20 @@ public class Opdracht2 {
         // TODO code application logic here
 
         Random generator = new Random();
-        List<Student> studenten = new ArrayList();
-        int aantalLeerlingen = 200;
+        final int AANTAL_LEERLINGEN = 200;
+//        List<Student> studenten = new ArrayList();
+        Student[] studenten = new Student[AANTAL_LEERLINGEN];
         
-        for (int i = 0; i < aantalLeerlingen; i++) {
+        
+        //Maak studenten aan
+        for (int i = 0; i < studenten.length; i++) {
             Student s = new Student();
             s.incrementId(i);
             double cijfer = generator.nextDouble() * 9 + 1;
 
             s.setCijfer(cijfer);
-            studenten.add(s);
+//            studenten.add(s);
+            studenten[i] = s;
 
         }
 
@@ -105,7 +87,8 @@ public class Opdracht2 {
         Klas klas = new Klas();
         List<Klas> klassen = new ArrayList();
 
-        for (int i = 0; i < (int) aantalKlassen(studenten.size()); i++) {
+        //Genereer klassnen.
+        for (int i = 0; i < (int) aantalKlassen(studenten.length); i++) {
 
             if (counter <= 3) {
                 if (counter == 0) {
@@ -123,112 +106,71 @@ public class Opdracht2 {
 
         }
 
-//        for (int i = 0; i < klassen.size(); i++) {
-//            System.out.println(klassen.get(i).getKlas());
-//            
-//        }
         counter = 0;
 
-        for (int i = 0; i < studenten.size(); i++) {
+        //Voeg student toe aan de klassen.
+        for (int i = 0; i < studenten.length; i++) {
             if (counter < klassen.size()) {
-                studenten.get(i).setKlas(klassen.get(counter));
-                klassen.get(counter).addStudent(studenten.get(i));
+                studenten[i].setKlas(klassen.get(counter));
+                klassen.get(counter).addStudent(studenten[i]);
                 counter++;
                 if (counter == klassen.size()) {
                     counter = 0;
                 }
-
             }
         }
 
-        List<Klas> nieuweKlassen = new ArrayList();
-
-        //Lijst zonder null waarden.
-        for (int i = 0; i < klassen.size(); i++) {
-
-            Klas k = klassen.get(i);
-            Student[] s = k.geefStudentenTerug();
-
-            Klas k2 = new Klas(k.size());
-
-            for (int j = 0; j < k.size(); j++) {
-                k2.addStudentToNewList(s[j]);
-//                System.out.println(s[j]);
-            }
-
-            nieuweKlassen.add(k2);
-
-        }
-
-//        for (int i = 0; i < nieuweKlassen.size(); i++) {
-//            Klas k = nieuweKlassen.get(i);
-//            Student[] s = k.geefStudentenZonderNullTerug();
-//            
-//            for (int j = 0; j < s.length; j++) {
+//        List<Klas> nieuweKlassen = new ArrayList();
+//
+//        //Lijst zonder null waarden.
+//        for (int i = 0; i < klassen.size(); i++) {
+//
+//            Klas k = klassen.get(i);
+//            Student[] s = k.geefStudentenTerug();
+//
+//            Klas k2 = new Klas(k.size());
+//
+//            for (int j = 0; j < k.size(); j++) {
+//                k2.addStudentToNewList(s[j]);
 //                System.out.println(s[j]);
 //            }
-//            
-//            System.out.println("-----------");
+//
+//            nieuweKlassen.add(k2);
+//
 //        }
         
-//        for (int i = 0; i < nieuweKlassen.size(); i++) {
-//
-//            StdRandom.shuffle(nieuweKlassen.get(i).geefStudentenZonderNullTerug());
-//        }
-
+        /* Geeft aantal de leerlingen terug per klas.
         for (int i = 0; i < nieuweKlassen.size(); i++) {
 
             Klas k = nieuweKlassen.get(i);
             Student[] s = k.geefStudentenZonderNullTerug();
 
             for (int j = 0; j < s.length; j++) {
-                System.out.println(s[j]);
+                System.out.println("Student " + j + ": " + s[j]);
+                
             }
 
             System.out.println("-----------");
         }
-
-//        System.out.println();
-//        System.out.println("Beginning insertion sort...");
-//        System.out.println();
-//
-//
-//        for (int i = 0; i < nieuweKlassen.size(); i++) {
-//
-//            Student[] lijst = insertionSort(nieuweKlassen.get(i));
-//
-//            for (Student s : lijst) {
-//                System.out.println(s);
-//            }
-//
+        */
+        
+        System.out.println();
+        System.out.println("SHUFFLE");
+        
+        StdRandom.shuffle(studenten);
+        
+//        for (Student s : studenten) {
+//            System.out.println(s);
 //        }
-
-        System.out.println();
-        System.out.println();
         
-        Student[] studentLijst = new Student[aantalLeerlingen];
-        int index = 0;
-        
-        for (int i = 0; i < nieuweKlassen.size(); i++) {
-            
-            Klas k = nieuweKlassen.get(i);
-            Student[] s = k.geefStudentenZonderNullTerug();
-            
-            for (int j = 0; j < s.length; j++) {
-                studentLijst[index] = s[j];
-                System.out.println("Counter " + index + ": " + s[j]);
-                index++;
-                
-            }
-            
-        }
-        
-        System.out.println();
+        studenten = Sorting.insertionSort(studenten);
         
         for (Student s : studenten) {
             System.out.println(s);
         }
         
+        Sorting.bucketSort(studenten, studenten.length-1);
+
         
     }
 

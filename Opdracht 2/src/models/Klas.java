@@ -9,20 +9,23 @@ package models;
  *
  * @author duytran
  */
-public class Klas {
+public class Klas implements Comparable<Klas>{
 
     private String klas = "I";
     private Student[] studenten;
+    
+    //Zal een array bevatten zonder Null waarden.
     private Student[] lijstZonderNull;
-    private int index = 0;
-    private int index2 = 0;
+    private int index;
     
     public Klas() {
         studenten = new Student[32];
+        index = 0;
     }
     
     public Klas(int max) {
         lijstZonderNull = new Student[max];
+        index = 0;
     }
 
     public String getKlas() {
@@ -42,11 +45,11 @@ public class Klas {
     
     public void addStudentToNewList(Student student) {
         
-        if (index2 == lijstZonderNull.length) {
+        if (index == lijstZonderNull.length) {
             System.out.println("klas is vol.");
         } else {
-            lijstZonderNull[index2] = student;
-            index2++;
+            lijstZonderNull[index] = student;
+            index++;
         }
         
     }
@@ -74,6 +77,11 @@ public class Klas {
         for (int i = 0; i < studenten.length; i++) {
             System.out.println(studenten[i]);
         }
+    }
+
+    @Override
+    public int compareTo(Klas o) {
+        return this.getKlas().compareTo(o.getKlas());
     }
 
 }
