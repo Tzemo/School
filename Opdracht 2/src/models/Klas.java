@@ -5,8 +5,6 @@
  */
 package models;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author duytran
@@ -14,10 +12,18 @@ import java.util.ArrayList;
 public class Klas {
 
     private String klas = "I";
-//    private Student[] studenten = new Student[32];
-    private ArrayList<Student> studentenLijst = new ArrayList();
+    private Student[] studenten;
+    private Student[] lijstZonderNull;
     private int index = 0;
-    private int size = 0;
+    private int index2 = 0;
+    
+    public Klas() {
+        studenten = new Student[32];
+    }
+    
+    public Klas(int max) {
+        lijstZonderNull = new Student[max];
+    }
 
     public String getKlas() {
         return klas;
@@ -25,32 +31,39 @@ public class Klas {
 
     public void addStudent(Student student) {
 
-//        if (index == studenten.length) {
-//            System.out.println("klas is vol.");
-//        } else {
-//            studenten[index] = student;
-            index++;
-            size++;
-//
-//        }
-        
-        if (studentenLijst.size() == 32) {
-            System.out.println("rot maar op");
+        if (index == studenten.length) {
+            System.out.println("klas is vol.");
         } else {
-            studentenLijst.add(student);
+            studenten[index] = student;
+            index++;
+        }
+        
+    }
+    
+    public void addStudentToNewList(Student student) {
+        
+        if (index2 == lijstZonderNull.length) {
+            System.out.println("klas is vol.");
+        } else {
+            lijstZonderNull[index2] = student;
+            index2++;
         }
         
     }
 
     public int size() {
         
-        return size;
+        return index;
         
     }
     
     
-    public ArrayList geefStudentenTerug(){
-        return studentenLijst;
+    public Student[] geefStudentenTerug(){
+        return studenten;
+    }
+    
+    public Student[] geefStudentenZonderNullTerug() {
+        return lijstZonderNull;
     }
             
     public void setKlas(String klas) {
@@ -58,8 +71,8 @@ public class Klas {
     }
     
     public void print() {
-        for (int i = 0; i < studentenLijst.size(); i++) {
-            System.out.println(studentenLijst.get(i));
+        for (int i = 0; i < studenten.length; i++) {
+            System.out.println(studenten[i]);
         }
     }
 

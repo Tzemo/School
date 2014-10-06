@@ -5,7 +5,6 @@
  */
 package opdracht.pkg2;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -19,31 +18,28 @@ import nl.hva.dmci.ict.inf.ads.lib.StdRandom;
  */
 public class Opdracht2 {
 
-    public static Student[] insertionSort(ArrayList<Student> studenten){
-        
-        Student[] gesorteerd = (Student[]) studenten.toArray();
-        
-        
-        for (int i = 1; i < gesorteerd.length; i++) {
-          
-                Student temp = gesorteerd[i];
-                int j = i;   
-                System.out.println(i);
-                while(j>0 && gesorteerd[j-1].getCijfer() < temp.getCijfer()){
-                    
-                    gesorteerd[j] = gesorteerd[j-1];
-              
-                    System.out.println(j);
-                    j--;
-                }
+    public static Student[] insertionSort(Klas klas) {
 
-                gesorteerd[j] = temp;
-                
+        Student[] lijst = klas.geefStudentenZonderNullTerug();
+
+        for (int i = 1; i < lijst.length; i++) {
+
+            Student temp = lijst[i];
+            int j = i;
+
+            while (j > 0 && lijst[j - 1].getCijfer() < temp.getCijfer()) {
+
+                lijst[j] = lijst[j - 1];
+
+                j--;
+            }
+
+            lijst[j] = temp;
+
         }
-        
-        return gesorteerd;
-    }
 
+        return lijst;
+    }
 
     public static double aantalKlassen(int aantalStudenten) {
 
@@ -92,17 +88,18 @@ public class Opdracht2 {
 
         Random generator = new Random();
         List<Student> studenten = new ArrayList();
- 
-        for (int i = 0; i < 200; i++) {
+        int aantalLeerlingen = 200;
+        
+        for (int i = 0; i < aantalLeerlingen; i++) {
             Student s = new Student();
             s.incrementId(i);
             double cijfer = generator.nextDouble() * 9 + 1;
-         
-           s.setCijfer(cijfer);
-           studenten.add(s);
-            
+
+            s.setCijfer(cijfer);
+            studenten.add(s);
+
         }
-        
+
         int counter = 0;
         int klasNummer = 200;
         Klas klas = new Klas();
@@ -125,48 +122,113 @@ public class Opdracht2 {
             }
 
         }
-        
-        for (int i = 0; i < klassen.size(); i++) {
-            System.out.println(klassen.get(i).getKlas());
-            
-        }
 
+//        for (int i = 0; i < klassen.size(); i++) {
+//            System.out.println(klassen.get(i).getKlas());
+//            
+//        }
         counter = 0;
-        
+
         for (int i = 0; i < studenten.size(); i++) {
             if (counter < klassen.size()) {
                 studenten.get(i).setKlas(klassen.get(counter));
                 klassen.get(counter).addStudent(studenten.get(i));
                 counter++;
-                if (counter==klassen.size()) {
+                if (counter == klassen.size()) {
                     counter = 0;
                 }
-               
-                        
+
             }
         }
-        
+
+        List<Klas> nieuweKlassen = new ArrayList();
+
+        //Lijst zonder null waarden.
         for (int i = 0; i < klassen.size(); i++) {
-            StdRandom.shuffle(klassen.get(i).geefStudentenTerug().toArray());
+
+            Klas k = klassen.get(i);
+            Student[] s = k.geefStudentenTerug();
+
+            Klas k2 = new Klas(k.size());
+
+            for (int j = 0; j < k.size(); j++) {
+                k2.addStudentToNewList(s[j]);
+//                System.out.println(s[j]);
+            }
+
+            nieuweKlassen.add(k2);
+
         }
- 
-//        
-//        for (Student s : studenten) {
-//            System.out.println(s);
+
+//        for (int i = 0; i < nieuweKlassen.size(); i++) {
+//            Klas k = nieuweKlassen.get(i);
+//            Student[] s = k.geefStudentenZonderNullTerug();
+//            
+//            for (int j = 0; j < s.length; j++) {
+//                System.out.println(s[j]);
+//            }
+//            
+//            System.out.println("-----------");
 //        }
+        
+//        for (int i = 0; i < nieuweKlassen.size(); i++) {
 //
-//        for (int i = 0; i < klassen.size(); i++) {
-//            klassen.get(i).print();
+//            StdRandom.shuffle(nieuweKlassen.get(i).geefStudentenZonderNullTerug());
 //        }
-//      
-      
+
+        for (int i = 0; i < nieuweKlassen.size(); i++) {
+
+            Klas k = nieuweKlassen.get(i);
+            Student[] s = k.geefStudentenZonderNullTerug();
+
+            for (int j = 0; j < s.length; j++) {
+                System.out.println(s[j]);
+            }
+
+            System.out.println("-----------");
+        }
+
+//        System.out.println();
+//        System.out.println("Beginning insertion sort...");
+//        System.out.println();
+//
+//
+//        for (int i = 0; i < nieuweKlassen.size(); i++) {
+//
+//            Student[] lijst = insertionSort(nieuweKlassen.get(i));
+//
+//            for (Student s : lijst) {
+//                System.out.println(s);
+//            }
+//
+//        }
+
+        System.out.println();
+        System.out.println();
         
-        Student[] lijst = insertionSort(klassen.get(0).geefStudentenTerug());
+        Student[] studentLijst = new Student[aantalLeerlingen];
+        int index = 0;
         
+        for (int i = 0; i < nieuweKlassen.size(); i++) {
+            
+            Klas k = nieuweKlassen.get(i);
+            Student[] s = k.geefStudentenZonderNullTerug();
+            
+            for (int j = 0; j < s.length; j++) {
+                studentLijst[index] = s[j];
+                System.out.println("Counter " + index + ": " + s[j]);
+                index++;
+                
+            }
+            
+        }
         
-        for (Student s : lijst) {
+        System.out.println();
+        
+        for (Student s : studenten) {
             System.out.println(s);
         }
+        
         
     }
 
