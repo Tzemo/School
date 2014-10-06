@@ -17,6 +17,7 @@ public class Klas {
 //    private Student[] studenten = new Student[32];
     private ArrayList<Student> studentenLijst = new ArrayList();
     private int index = 0;
+    private int size = 0;
 
     public String getKlas() {
         return klas;
@@ -28,7 +29,8 @@ public class Klas {
 //            System.out.println("klas is vol.");
 //        } else {
 //            studenten[index] = student;
-//            index++;
+            index++;
+            size++;
 //
 //        }
         
@@ -40,6 +42,12 @@ public class Klas {
         
     }
 
+    public int size() {
+        
+        return size;
+        
+    }
+    
     
     public ArrayList geefStudentenTerug(){
         return studentenLijst;
