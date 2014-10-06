@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Random;
 import models.Klas;
 import models.Student;
+import nl.hva.dmci.ict.inf.ads.lib.StdRandom;
 
 /**
  *
@@ -18,14 +19,31 @@ import models.Student;
  */
 public class Opdracht2 {
 
-    public List studentLijst(int aantal) {
+    public static Student[] insertionSort(ArrayList<Student> studenten){
+        
+        Student[] gesorteerd = (Student[]) studenten.toArray();
+        
+        
+        for (int i = 1; i < gesorteerd.length; i++) {
+          
+                Student temp = gesorteerd[i];
+                int j = i;   
+                System.out.println(i);
+                while(j>0 && gesorteerd[j-1].getCijfer() < temp.getCijfer()){
+                    
+                    gesorteerd[j] = gesorteerd[j-1];
+              
+                    System.out.println(j);
+                    j--;
+                }
 
-        Student student = new Student();
-
-        List<Student> list = new ArrayList();
-
-        return list;
+                gesorteerd[j] = temp;
+                
+        }
+        
+        return gesorteerd;
     }
+
 
     public static double aantalKlassen(int aantalStudenten) {
 
@@ -75,7 +93,7 @@ public class Opdracht2 {
         Random generator = new Random();
         List<Student> studenten = new ArrayList();
  
-        for (int i = 0; i < 800; i++) {
+        for (int i = 0; i < 200; i++) {
             Student s = new Student();
             s.incrementId(i);
             double cijfer = generator.nextDouble() * 9 + 1;
@@ -118,6 +136,7 @@ public class Opdracht2 {
         for (int i = 0; i < studenten.size(); i++) {
             if (counter < klassen.size()) {
                 studenten.get(i).setKlas(klassen.get(counter));
+                klassen.get(counter).addStudent(studenten.get(i));
                 counter++;
                 if (counter==klassen.size()) {
                     counter = 0;
@@ -127,10 +146,28 @@ public class Opdracht2 {
             }
         }
         
-        for (Student s : studenten) {
+        for (int i = 0; i < klassen.size(); i++) {
+            StdRandom.shuffle(klassen.get(i).geefStudentenTerug().toArray());
+        }
+ 
+//        
+//        for (Student s : studenten) {
+//            System.out.println(s);
+//        }
+//
+//        for (int i = 0; i < klassen.size(); i++) {
+//            klassen.get(i).print();
+//        }
+//      
+      
+        
+        Student[] lijst = insertionSort(klassen.get(0).geefStudentenTerug());
+        
+        
+        for (Student s : lijst) {
             System.out.println(s);
         }
-
+        
     }
 
 }

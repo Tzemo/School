@@ -35,6 +35,9 @@ public class Student {
     }
 
     public double getCijfer() {
+        
+        formatter.format(cijfer);
+        
         return cijfer;
     }
 
