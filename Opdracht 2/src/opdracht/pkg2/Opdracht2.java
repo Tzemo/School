@@ -27,11 +27,11 @@ public class Opdracht2 {
 
     }
 
-    public static Klas geefKlas(int x, int klasNummer) {
+    public static Klas geefKlas(int sectie, int klasNummer) {
 
         Klas klas = new Klas();
 
-        switch (x) {
+        switch (sectie) {
 
             case 0: {
                 klas.concatKlas("G" + klasNummer);
@@ -65,7 +65,7 @@ public class Opdracht2 {
         // TODO code application logic here
 
         Random generator = new Random();
-        final int AANTAL_LEERLINGEN = 200;
+        final int AANTAL_LEERLINGEN = 3200;
 //        List<Student> studenten = new ArrayList();
         Student[] studenten = new Student[AANTAL_LEERLINGEN];
 
@@ -74,9 +74,7 @@ public class Opdracht2 {
             Student s = new Student();
             s.incrementId(i);
             double cijfer = generator.nextDouble() * 9 + 1;
-
             s.setCijfer(cijfer);
-//            studenten.add(s);
             studenten[i] = s;
 
         }
@@ -119,7 +117,6 @@ public class Opdracht2 {
             }
         }
 
-        ArrayList<Klas> nieuweKlassen = new ArrayList();
         ArrayList<Klas> legeKlassen = new ArrayList();
 
         //Lijst zonder null waarden.
@@ -127,37 +124,14 @@ public class Opdracht2 {
 
             Klas current = klassen.get(i);
             Student[] s = current.geefStudentenTerug();
-
-            Klas k = new Klas(current.size());
-            k.setKlas(current.getKlas());
-
+            
             Klas leeg = new Klas(current.size());
             leeg.setKlas(current.getKlas());
 
-            for (int j = 0; j < k.size(); j++) {
-                k.addStudent(s[j]);
-                System.out.println(s[j]);
-            }
-
-            nieuweKlassen.add(k);
             legeKlassen.add(leeg);
 
         }
-
-        /* Geeft aantal de leerlingen terug per klas. 
-         for (int i = 0; i < nieuweKlassen.size(); i++) {
-
-         Klas k = nieuweKlassen.get(i);
-         Student[] s = k.geefStudentenTerug();
-
-         for (int j = 0; j < s.length; j++) {
-         System.out.println("Student " + j + ": " + s[j]);
-                
-         }
-
-         System.out.println("-----------");
-         }
-         */
+        
         System.out.println();
         System.out.println("SHUFFLE");
 
@@ -175,7 +149,7 @@ public class Opdracht2 {
 
         System.out.println();
         System.out.println("Gesorteerd op ID en klas");
-        
+        System.out.println("Aantal studenten:" + studenten.length);
         Sorting.bucketSort(studenten, legeKlassen);
         
         for (Student s : studenten) {

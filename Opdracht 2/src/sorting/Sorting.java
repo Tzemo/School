@@ -19,6 +19,7 @@ public class Sorting {
     public static Student[] insertionSortCijfer(Student[] studenten) {
         
         double t1 = System.nanoTime();
+        System.out.println("Aantal studenten: " + studenten.length);
         
         for (int i = 1; i < studenten.length; i++) {
 
@@ -95,6 +96,8 @@ public class Sorting {
     
     public static Student[] bucketSort(Student[] studenten, ArrayList klassen) {
 
+        double t1 = System.nanoTime();
+        
         Klas[] buckets = new Klas[klassen.size()];
     
         for (int i = 0; i < klassen.size(); i++) {
@@ -132,6 +135,10 @@ public class Sorting {
             }
             
         }
+        
+        double t2 = System.nanoTime();
+        
+        System.out.println("Tijd benodigd: " + (t2-t1) / 1000000000);
         
         return studenten;
         

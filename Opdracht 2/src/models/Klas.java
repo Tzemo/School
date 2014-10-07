@@ -9,19 +9,24 @@ package models;
  *
  * @author duytran
  */
-public class Klas implements Comparable<Klas>{
+public class Klas implements Comparable<Klas> {
 
     private String klas = "I";
     private Student[] studenten;
     private int index;
-    
+
     public Klas() {
         studenten = new Student[32];
         index = 0;
     }
-    
+
     public Klas(int max) {
-        studenten = new Student[max];
+
+        if (max <= 32) {
+            studenten = new Student[max];
+        } else {
+            System.out.println("Error");
+        }
         index = 0;
     }
 
@@ -37,29 +42,28 @@ public class Klas implements Comparable<Klas>{
             studenten[index] = student;
             index++;
         }
-        
+
     }
 
-    public int size() {   
+    public int size() {
         return index;
     }
-    
-    
-    public Student[] geefStudentenTerug(){
+
+    public Student[] geefStudentenTerug() {
         return studenten;
     }
-            
+
     public void concatKlas(String klas) {
         this.klas += klas;
     }
-    
+
     public void setKlas(String klas) {
         this.klas = klas;
     }
 
     @Override
-    public int compareTo(Klas o) {
-        return this.getKlas().compareTo(o.getKlas());
+    public int compareTo(Klas klas) {
+        return this.getKlas().compareTo(klas.getKlas());
     }
 
 }

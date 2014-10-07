@@ -17,14 +17,7 @@ public class Student {
     private DecimalFormat formatter = new DecimalFormat("#.0");
     private int id = 50060001;
     private double cijfer;
-
-    
     private Klas klas;
-    
-    
-    public Student() {
-   
-    }
 
     public int getId() {
         return id;
