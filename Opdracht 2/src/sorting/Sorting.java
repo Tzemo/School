@@ -7,7 +7,6 @@
 package sorting;
 
 import java.util.ArrayList;
-import java.util.List;
 import models.Klas;
 import models.Student;
 
@@ -18,7 +17,6 @@ import models.Student;
 public class Sorting {
     
     public static Student[] insertionSortCijfer(Student[] studenten) {
-
         
         for (int i = 1; i < studenten.length; i++) {
 
@@ -40,10 +38,32 @@ public class Sorting {
         
     }
     
-    public static Student[] insertionSortID(Student[] studenten) {
+    
+    public static Klas insertionSortID(Klas bucket) {
+        Student[] s = bucket.geefStudentenTerug();
         
+        Klas k = new Klas(bucket.geefStudentenTerug().length);      
+                
+        for (int i = 0; i <s.length ; i++) {
+            Student temp = s[i];
+            int j = i;
+
+            while (j > 0 && s[j - 1].getId()>temp.getId()) {
+
+                s[j] = s[j - 1];
+
+                j--;
+            }
+
+            s[j] = temp;
+
+        }
         
-        return studenten;
+        for (int i = 0; i < s.length; i++) {
+            k.addStudent(s[i]);
+        }
+        
+        return k;
     }
     
     public static Klas[] insertionSortKlas(Klas[] klassen) {
@@ -76,11 +96,7 @@ public class Sorting {
         }
         
         buckets = insertionSortKlas(buckets);
-        
-        for (int i = 0; i < buckets.length; i++) {
-            System.out.println(buckets[i].getKlas());
-        }
-  
+          
         for (int i = 0; i < buckets.length; i++) {
             
             for (int j = 0; j < studenten.length; j++) {
@@ -93,12 +109,10 @@ public class Sorting {
             
         }
         
-        /*
-        Sorteer nu alle buckets
         
-        
-        
-        */
+        for (int i = 0; i < buckets.length; i++) {
+            buckets[i] = insertionSortID(buckets[i]);
+        }
         
         int index = 0;
         
@@ -118,7 +132,3 @@ public class Sorting {
         }
         
     }
-     
-        
-        
-
