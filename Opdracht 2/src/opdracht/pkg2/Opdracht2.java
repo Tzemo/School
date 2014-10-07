@@ -163,7 +163,7 @@ public class Opdracht2 {
 
         StdRandom.shuffle(studenten);
 
-        studenten = Sorting.insertionSort(studenten);
+//        studenten = Sorting.insertionSortCijfer(studenten);
 
         Sorting.bucketSort(studenten, legeKlassen);
         

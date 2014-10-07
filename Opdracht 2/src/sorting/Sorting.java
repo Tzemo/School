@@ -17,7 +17,7 @@ import models.Student;
  */
 public class Sorting {
     
-    public static Student[] insertionSort(Student[] studenten) {
+    public static Student[] insertionSortCijfer(Student[] studenten) {
 
         
         for (int i = 1; i < studenten.length; i++) {
@@ -38,6 +38,12 @@ public class Sorting {
 
         return studenten;
         
+    }
+    
+    public static Student[] insertionSortID(Student[] studenten) {
+        
+        
+        return studenten;
     }
     
     public static Klas[] insertionSortKlas(Klas[] klassen) {
@@ -86,6 +92,13 @@ public class Sorting {
             }
             
         }
+        
+        /*
+        Sorteer nu alle buckets
+        
+        
+        
+        */
         
         int index = 0;
         
