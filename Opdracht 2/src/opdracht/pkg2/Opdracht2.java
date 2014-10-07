@@ -68,8 +68,7 @@ public class Opdracht2 {
         final int AANTAL_LEERLINGEN = 200;
 //        List<Student> studenten = new ArrayList();
         Student[] studenten = new Student[AANTAL_LEERLINGEN];
-        
-        
+
         //Maak studenten aan
         for (int i = 0; i < studenten.length; i++) {
             Student s = new Student();
@@ -120,8 +119,8 @@ public class Opdracht2 {
             }
         }
 
-        List<Klas> nieuweKlassen = new ArrayList();
-        List<Klas> legeKlassen = new ArrayList();
+        ArrayList<Klas> nieuweKlassen = new ArrayList();
+        ArrayList<Klas> legeKlassen = new ArrayList();
 
         //Lijst zonder null waarden.
         for (int i = 0; i < klassen.size(); i++) {
@@ -131,12 +130,12 @@ public class Opdracht2 {
 
             Klas k = new Klas(current.size());
             k.setKlas(current.getKlas());
-            
+
             Klas leeg = new Klas(current.size());
             leeg.setKlas(current.getKlas());
 
             for (int j = 0; j < k.size(); j++) {
-                k.addStudentToNewList(s[j]);
+                k.addStudent(s[j]);
                 System.out.println(s[j]);
             }
 
@@ -144,35 +143,33 @@ public class Opdracht2 {
             legeKlassen.add(leeg);
 
         }
-        
-        /* Geeft aantal de leerlingen terug per klas.
-        for (int i = 0; i < nieuweKlassen.size(); i++) {
 
-            Klas k = nieuweKlassen.get(i);
-            Student[] s = k.geefStudentenZonderNullTerug();
+        /* Geeft aantal de leerlingen terug per klas. 
+         for (int i = 0; i < nieuweKlassen.size(); i++) {
 
-            for (int j = 0; j < s.length; j++) {
-                System.out.println("Student " + j + ": " + s[j]);
+         Klas k = nieuweKlassen.get(i);
+         Student[] s = k.geefStudentenTerug();
+
+         for (int j = 0; j < s.length; j++) {
+         System.out.println("Student " + j + ": " + s[j]);
                 
-            }
+         }
 
-            System.out.println("-----------");
-        }
-        */
-        
+         System.out.println("-----------");
+         }
+         */
         System.out.println();
         System.out.println("SHUFFLE");
-        
+
         StdRandom.shuffle(studenten);
-        
+
         studenten = Sorting.insertionSort(studenten);
-    
+
+        Sorting.bucketSort(studenten, legeKlassen);
+        
         for (Student s : studenten) {
             System.out.println(s);
         }
-
-        Sorting.bucketSort(studenten, legeKlassen);
- 
     }
 
 }

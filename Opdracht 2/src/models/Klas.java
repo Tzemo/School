@@ -13,9 +13,6 @@ public class Klas implements Comparable<Klas>{
 
     private String klas = "I";
     private Student[] studenten;
-    
-    //Zal een array bevatten zonder Null waarden.
-    private Student[] lijstZonderNull;
     private int index;
     
     public Klas() {
@@ -24,7 +21,7 @@ public class Klas implements Comparable<Klas>{
     }
     
     public Klas(int max) {
-        lijstZonderNull = new Student[max];
+        studenten = new Student[max];
         index = 0;
     }
 
@@ -42,31 +39,14 @@ public class Klas implements Comparable<Klas>{
         }
         
     }
-    
-    public void addStudentToNewList(Student student) {
-        
-        if (index == lijstZonderNull.length) {
-            System.out.println("klas is vol.");
-        } else {
-            lijstZonderNull[index] = student;
-            index++;
-        }
-        
-    }
 
-    public int size() {
-        
+    public int size() {   
         return index;
-        
     }
     
     
     public Student[] geefStudentenTerug(){
         return studenten;
-    }
-    
-    public Student[] geefStudentenZonderNullTerug() {
-        return lijstZonderNull;
     }
             
     public void concatKlas(String klas) {
@@ -75,12 +55,6 @@ public class Klas implements Comparable<Klas>{
     
     public void setKlas(String klas) {
         this.klas = klas;
-    }
-    
-    public void print() {
-        for (int i = 0; i < studenten.length; i++) {
-            System.out.println(studenten[i]);
-        }
     }
 
     @Override

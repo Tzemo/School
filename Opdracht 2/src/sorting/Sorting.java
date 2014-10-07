@@ -40,27 +40,72 @@ public class Sorting {
         
     }
     
-    public static void bucketSort(Student[] studenten, List klassen) {
+    public static Klas[] insertionSortKlas(Klas[] klassen) {
+        
+        for (int i = 1; i < klassen.length; i++) {
+            
+            Klas temp = klassen[i];
+            int j = i;
+            
+            while (j > 0 && klassen[j-1].getKlas().compareTo(temp.getKlas()) > 0) {
 
-        int[] buckets = new int[klassen.size()];
+                klassen[j] = klassen[j - 1];
+
+                j--;
+            }
+            
+            klassen[j] = temp;
+        }
         
-        System.out.println(klassen.size());
+        return klassen;
         
-        for (int i = 1; i < studenten.length; i++) {
+    }
+    
+    public static Student[] bucketSort(Student[] studenten, ArrayList klassen) {
+
+        Klas[] buckets = new Klas[klassen.size()];
+    
+        for (int i = 0; i < klassen.size(); i++) {
+            buckets[i] = (Klas) klassen.get(i);
+        }
+        
+        buckets = insertionSortKlas(buckets);
+        
+        for (int i = 0; i < buckets.length; i++) {
+            System.out.println(buckets[i].getKlas());
+        }
+  
+        for (int i = 0; i < buckets.length; i++) {
             
-            if (studenten[i].getKlas().compareTo(studenten[i-1].getKlas()) == 0) {
+            for (int j = 0; j < studenten.length; j++) {
                 
-//                System.out.println(studenten[i].getId() + " zit in dezelfde klas als " +studenten[i-1].getId());
+                if (studenten[j].getKlas().compareTo(buckets[i]) == 0) {
+                    buckets[i].addStudent(studenten[j]);
+                }
                 
-            } 
+            }
             
+        }
+        
+        int index = 0;
+        
+        for (int i = 0; i < buckets.length; i++) {
             
+            Student[] s = buckets[i].geefStudentenTerug();
             
+            for (int j = 0; j < s.length; j++) {
+                studenten[index] = s[j];
+                index++;
+            }
             
+        }
+        
+        return studenten;
+        
         }
         
     }
      
         
         
-}
+
