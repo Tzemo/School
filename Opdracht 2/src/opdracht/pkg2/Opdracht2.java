@@ -162,9 +162,20 @@ public class Opdracht2 {
         System.out.println("SHUFFLE");
 
         StdRandom.shuffle(studenten);
+        
+        Student[] lijstVoorCijfers = studenten;
 
-//        studenten = Sorting.insertionSortCijfer(studenten);
+        studenten = Sorting.insertionSortCijfer(studenten);
+        
+        System.out.println("Gesorteerd op cijfers:");
+        
+        for (Student s : lijstVoorCijfers) {
+            System.out.println(s);
+        }
 
+        System.out.println();
+        System.out.println("Gesorteerd op ID en klas");
+        
         Sorting.bucketSort(studenten, legeKlassen);
         
         for (Student s : studenten) {

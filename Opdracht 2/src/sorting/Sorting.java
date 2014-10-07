@@ -18,6 +18,8 @@ public class Sorting {
     
     public static Student[] insertionSortCijfer(Student[] studenten) {
         
+        double t1 = System.nanoTime();
+        
         for (int i = 1; i < studenten.length; i++) {
 
             Student temp = studenten[i];
@@ -33,6 +35,10 @@ public class Sorting {
             studenten[j] = temp;
 
         }
+        
+        double t2 = System.nanoTime();
+        
+        System.out.println("Tijd benodigd = " + (t2-t1) / 1000000000);
 
         return studenten;
         
