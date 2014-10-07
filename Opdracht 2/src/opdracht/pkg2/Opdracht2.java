@@ -171,7 +171,7 @@ public class Opdracht2 {
             System.out.println(s);
         }
 
-        //Sorting.bucketSort(studenten);
+        Sorting.bucketSort(studenten, legeKlassen);
  
     }
 

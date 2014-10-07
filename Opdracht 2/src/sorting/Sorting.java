@@ -19,7 +19,7 @@ public class Sorting {
     
     public static Student[] insertionSort(Student[] studenten) {
 
-
+        
         for (int i = 1; i < studenten.length; i++) {
 
             Student temp = studenten[i];
@@ -40,11 +40,20 @@ public class Sorting {
         
     }
     
-    public static void bucketSort(Student[] studenten) {
+    public static void bucketSort(Student[] studenten, List klassen) {
 
+        int[] buckets = new int[klassen.size()];
         
+        System.out.println(klassen.size());
         
-        for (Student s : studenten) {
+        for (int i = 1; i < studenten.length; i++) {
+            
+            if (studenten[i].getKlas().compareTo(studenten[i-1].getKlas()) == 0) {
+                
+//                System.out.println(studenten[i].getId() + " zit in dezelfde klas als " +studenten[i-1].getId());
+                
+            } 
+            
             
             
             
