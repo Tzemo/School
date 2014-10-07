@@ -6,6 +6,9 @@
 
 package sorting;
 
+import java.util.ArrayList;
+import java.util.List;
+import models.Klas;
 import models.Student;
 
 /**
@@ -37,28 +40,18 @@ public class Sorting {
         
     }
     
-    public static void bucketSort(Student[] studenten, int elementen) {
+    public static void bucketSort(Student[] studenten) {
+
         
         
-        if (elementen <= 0) {
-           return;
+        for (Student s : studenten) {
+            
+            
+            
         }
-
-        Student s = studenten[0];
-        Student x = studenten[5];
         
-        System.out.println(s.getKlas().getKlas());
-        System.out.println(x.getKlas().getKlas());
-        System.out.println(s.getKlas().compareTo(x.getKlas()));
-
-//        for (int i = 0; i < elementen; i++) {
-//            if (studenten[i].getKlas().getKlas().compareTo(last.getKlas().getKlas()) >= 1 ) {
-//                last = studenten[i];
-//            } else {
-//                first = studenten[i];
-//            }
-//        }
-       
     }
-    
+     
+        
+        
 }

@@ -34,19 +34,19 @@ public class Opdracht2 {
         switch (x) {
 
             case 0: {
-                klas.setKlas("G" + klasNummer);
+                klas.concatKlas("G" + klasNummer);
                 break;
             }
             case 1: {
-                klas.setKlas("N" + klasNummer);
+                klas.concatKlas("N" + klasNummer);
                 break;
             }
             case 2: {
-                klas.setKlas("S" + klasNummer);
+                klas.concatKlas("S" + klasNummer);
                 break;
             }
             case 3: {
-                klas.setKlas("T" + klasNummer);
+                klas.concatKlas("T" + klasNummer);
                 break;
             }
             default:
@@ -120,24 +120,30 @@ public class Opdracht2 {
             }
         }
 
-//        List<Klas> nieuweKlassen = new ArrayList();
-//
-//        //Lijst zonder null waarden.
-//        for (int i = 0; i < klassen.size(); i++) {
-//
-//            Klas k = klassen.get(i);
-//            Student[] s = k.geefStudentenTerug();
-//
-//            Klas k2 = new Klas(k.size());
-//
-//            for (int j = 0; j < k.size(); j++) {
-//                k2.addStudentToNewList(s[j]);
-//                System.out.println(s[j]);
-//            }
-//
-//            nieuweKlassen.add(k2);
-//
-//        }
+        List<Klas> nieuweKlassen = new ArrayList();
+        List<Klas> legeKlassen = new ArrayList();
+
+        //Lijst zonder null waarden.
+        for (int i = 0; i < klassen.size(); i++) {
+
+            Klas current = klassen.get(i);
+            Student[] s = current.geefStudentenTerug();
+
+            Klas k = new Klas(current.size());
+            k.setKlas(current.getKlas());
+            
+            Klas leeg = new Klas(current.size());
+            leeg.setKlas(current.getKlas());
+
+            for (int j = 0; j < k.size(); j++) {
+                k.addStudentToNewList(s[j]);
+                System.out.println(s[j]);
+            }
+
+            nieuweKlassen.add(k);
+            legeKlassen.add(leeg);
+
+        }
         
         /* Geeft aantal de leerlingen terug per klas.
         for (int i = 0; i < nieuweKlassen.size(); i++) {
@@ -159,19 +165,14 @@ public class Opdracht2 {
         
         StdRandom.shuffle(studenten);
         
-//        for (Student s : studenten) {
-//            System.out.println(s);
-//        }
-        
         studenten = Sorting.insertionSort(studenten);
-        
+    
         for (Student s : studenten) {
             System.out.println(s);
         }
-        
-        Sorting.bucketSort(studenten, studenten.length-1);
 
-        
+        //Sorting.bucketSort(studenten);
+ 
     }
 
 }

@@ -69,8 +69,12 @@ public class Klas implements Comparable<Klas>{
         return lijstZonderNull;
     }
             
-    public void setKlas(String klas) {
+    public void concatKlas(String klas) {
         this.klas += klas;
+    }
+    
+    public void setKlas(String klas) {
+        this.klas = klas;
     }
     
     public void print() {
