@@ -65,7 +65,7 @@ public class Opdracht2 {
         // TODO code application logic here
 
         Random generator = new Random();
-        final int AANTAL_LEERLINGEN = 3200;
+        final int AANTAL_LEERLINGEN = 12800;
 //        List<Student> studenten = new ArrayList();
         Student[] studenten = new Student[AANTAL_LEERLINGEN];
 
@@ -131,19 +131,17 @@ public class Opdracht2 {
             legeKlassen.add(leeg);
 
         }
-        
+      
         System.out.println();
         System.out.println("SHUFFLE");
 
         StdRandom.shuffle(studenten);
-        
-        Student[] lijstVoorCijfers = studenten;
 
         studenten = Sorting.insertionSortCijfer(studenten);
         
         System.out.println("Gesorteerd op cijfers:");
         
-        for (Student s : lijstVoorCijfers) {
+        for (Student s : studenten) {
             System.out.println(s);
         }
 
