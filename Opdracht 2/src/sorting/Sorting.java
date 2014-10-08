@@ -116,12 +116,13 @@ public class Sorting {
                 
             }
             
-        }
-        
-        
-        for (int i = 0; i < buckets.length; i++) {
             buckets[i] = insertionSortID(buckets[i]);
+            
         }
+       
+//        for (int i = 0; i < buckets.length; i++) {
+//            buckets[i] = insertionSortID(buckets[i]);
+//        }
         
         int index = 0;
         
