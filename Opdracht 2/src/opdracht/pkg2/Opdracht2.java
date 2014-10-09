@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package opdracht.pkg2;
 
 import java.util.ArrayList;
@@ -14,8 +9,7 @@ import nl.hva.dmci.ict.inf.ads.lib.StdRandom;
 import sorting.Sorting;
 
 /**
- *
- * @author duytran
+ * @author duytran, tzemochan
  */
 public class Opdracht2 {
 
@@ -50,7 +44,7 @@ public class Opdracht2 {
                 break;
             }
             default:
-                System.out.println("fsf");
+                System.out.println("Geen klas beschikbaar.");
                 break;
 
         }
@@ -62,11 +56,9 @@ public class Opdracht2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
 
         Random generator = new Random();
-        final int AANTAL_LEERLINGEN = 200;
-//        List<Student> studenten = new ArrayList();
+        final int AANTAL_LEERLINGEN = 800;
         Student[] studenten = new Student[AANTAL_LEERLINGEN];
 
         //Maak studenten aan
@@ -84,7 +76,7 @@ public class Opdracht2 {
         Klas klas = new Klas();
         List<Klas> klassen = new ArrayList();
 
-        //Genereer klassnen.
+        //Genereer klassen.
         for (int i = 0; i < (int) aantalKlassen(studenten.length); i++) {
 
             if (counter <= 3) {
@@ -119,7 +111,6 @@ public class Opdracht2 {
 
         ArrayList<Klas> legeKlassen = new ArrayList();
 
-        //Lijst zonder null waarden.
         for (int i = 0; i < klassen.size(); i++) {
 
             Klas current = klassen.get(i);
