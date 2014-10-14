@@ -73,7 +73,7 @@ public class Opdracht2 {
 
         int counter = 0;
         int klasNummer = 200;
-        Klas klas = new Klas();
+        Klas klas;
         List<Klas> klassen = new ArrayList();
 
         //Genereer klassen.
