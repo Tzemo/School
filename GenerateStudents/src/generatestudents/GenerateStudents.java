@@ -25,15 +25,15 @@ public class GenerateStudents {
 //        System.out.println(students);
         
         //Haalt de array op van het object students.
-        Student[] studentz = students.getList();
+        Student[] studentArray = students.getList();
 
         List<Integer> hashValues = new ArrayList();
         
         //Math.abs voor de absolute waarde van de hashcode die niet altijd positief is.
         //Modulo 97 staat in de opdracht waarom we dat doen.
         
-        for (int i = 0; i < studentz.length; i++) {
-            int value = Math.abs(studentz[i].hashCode() % 97);
+        for (int i = 0; i < studentArray.length; i++) {
+            int value = Math.abs(studentArray[i].hashCode() % 97);
             
             hashValues.add(value);
             
@@ -56,10 +56,10 @@ public class GenerateStudents {
                     
             }
             System.out.println("\t freq: " + freq);
-            freq = -1;
+            freq = 0;
         }
         
-*/        
+*/       
         
         //Snellere frequentie manier
         for (int value : uniqueValues) {
@@ -67,15 +67,30 @@ public class GenerateStudents {
             System.out.print("Hashvalue: " + value);
             for (int i = 0; i < hashValues.size(); i++) {
                 if (value == hashValues.get(i)) {
-                    freq++;
+                    ++freq;
                 }
             }
+            
             System.out.println("\t freq " + freq);
+            
             //De frequentie moet weer op 0 zodat we opnieuw kunnen tellen bij de andere values.
             freq = 0;
             
         }
-     
+        
+        SeperateChainingHashST sc = new SeperateChainingHashST();
+    
+        for (int i = 0; i < studentArray.length; i++) {
+            int key = Math.abs(studentArray[i].hashCode() % 97);
+            String value = studentArray[i].getLdap();
+            
+            sc.put(key, value);
+            
+            
+        }
+
+        sc.getAll(60);
+
     }
     
 }
