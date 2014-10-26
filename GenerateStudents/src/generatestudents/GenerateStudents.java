@@ -28,13 +28,12 @@ public class GenerateStudents {
         Student[] studentArray = students.getList();
 
         List<Integer> hashValues = new ArrayList();
-        
+
         //Math.abs voor de absolute waarde van de hashcode die niet altijd positief is.
         //Modulo 97 staat in de opdracht waarom we dat doen.
         
         for (int i = 0; i < studentArray.length; i++) {
             int value = Math.abs(studentArray[i].hashCode() % 97);
-            
             hashValues.add(value);
             
         }
@@ -79,17 +78,23 @@ public class GenerateStudents {
         }
         
         SeperateChainingHashST sc = new SeperateChainingHashST();
-    
+        LinearProbing lp = new LinearProbing();
+        
+  
         for (int i = 0; i < studentArray.length; i++) {
             int key = Math.abs(studentArray[i].hashCode() % 97);
             String value = studentArray[i].getLdap();
             
             sc.put(key, value);
-            
-            
-        }
+            lp.put(key, value);
 
-        sc.getAll(60);
+        } 
+        
+        int firstKey = sc.firstKey();
+        
+        sc.getAll(firstKey);
+        
+        
 
     }
     

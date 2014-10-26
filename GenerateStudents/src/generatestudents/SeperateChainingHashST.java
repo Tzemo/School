@@ -16,6 +16,9 @@ public class SeperateChainingHashST<Key, Value> {
     
     private int M = 97;
     private Node[] st = new Node[M];
+    private Node oldNode = null;
+//    private int count = 0;
+    private int firstKey;
     
     private int hash (Key key) {
         
@@ -34,14 +37,12 @@ public class SeperateChainingHashST<Key, Value> {
     }
     
     public void getAll(Key key) {
-        
+ 
         int i = hash(key);
         
-        int counter = 0;
+        int counter = 1;
         for (Node x = st[i]; x != null; x = x.next) {
-            System.out.println(++counter);
-            System.out.println("The value for key " + i + " is " + x.val);
-            
+            System.out.println("Counter " + counter++ + ", key: " + x.key + ", value: " + x.val);
         }
         
     }
@@ -49,23 +50,28 @@ public class SeperateChainingHashST<Key, Value> {
     public void put(Key key, Value val) {
         
         int i = hash(key);
-        
-        
-        
-        for (Node current = st[i]; current != null; current = current.next) {
-            if (current.next == null ){ 
-                if (key.equals(current.key)) {
-                    
-                   Node node = new Node(key, val, null);
-                   current.next = node;
-                   return;
-                } 
 
-            }
+        for (Node x = st[i]; x != null; x = x.next) {
             
+            if (key.equals(x.key)) {
+                x.val = val;
+                // Stopt de methode vroegtijdig.
+                return;
+            }       
         }
-        st[i] = new Node(key, val, null);
         
+        st[i] = new Node(key, val, oldNode);
+        oldNode = st[i];
+
+        // Onthoudt de allereerste key.
+        // Key's die opnieuw worden doorgegeven in de methode zullen NOOIT hierin belanden.
+        firstKey = (int) st[i].key;
+        System.out.println(firstKey);
+
+    }
+    
+    public int firstKey() {
+        return firstKey;
     }
     
     private static class Node {
@@ -73,12 +79,7 @@ public class SeperateChainingHashST<Key, Value> {
         private Object val;
         private Object key;
         private Node next;
-               
-        public Node(){
-            
-        }
-        
-        
+             
         
         public Node (Object key, Object val, Node next) {
             this.key = key;
