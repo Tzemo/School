@@ -94,8 +94,6 @@ public class GenerateStudents {
         
         sc.getAll(firstKey);
         
-        
-
     }
     
 }

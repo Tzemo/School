@@ -41,8 +41,10 @@ public class SeperateChainingHashST<Key, Value> {
         int i = hash(key);
         
         int counter = 1;
+        System.out.println("---------------------------------------------------");
+        System.out.println("|Counter|\t|Key|\t\t|value|\n");
         for (Node x = st[i]; x != null; x = x.next) {
-            System.out.println("Counter " + counter++ + ", key: " + x.key + ", value: " + x.val);
+            System.out.println("    " + counter++ + "\t\t  " + x.key + "\t\t " + x.val);
         }
         
     }
