@@ -28,11 +28,14 @@ public class Student {
     @Override
     public int hashCode() {
 
+        hash = 13;
+        
         for (int i = 0; i < ldap.length(); i++) {
             hash = 31 * hash + ldap.charAt(i);
         }
 
         return hash;
+       
     }
 
     /**

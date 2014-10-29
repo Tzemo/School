@@ -33,7 +33,7 @@ public class GenerateStudents {
         //Modulo 97 staat in de opdracht waarom we dat doen.
         
         for (int i = 0; i < studentArray.length; i++) {
-            int value = Math.abs(studentArray[i].hashCode() % 97);
+            int value = Math.abs(studentArray[i].hashCode() %97);
             hashValues.add(value);
             
         }
@@ -43,57 +43,57 @@ public class GenerateStudents {
         
         //De frequentie
         int freq = 0;
+        int sum = 0;
         
- /*     Oude frequentie manier
-        
-        for (int i = 0; i < hashValues.size(); i++) {
-            System.out.print("Hashvalue: " + hashValues.get(i));
-            for (int j = 0; j < hashValues.size(); j++) {
-                if (hashValues.get(i) == hashValues.get(j)) {
-                    freq++;
-                }
-                    
-            }
-            System.out.println("\t freq: " + freq);
-            freq = 0;
-        }
-        
-*/       
-        
-        //Snellere frequentie manier
         for (int value : uniqueValues) {
             
             System.out.print("Hashvalue: " + value);
             for (int i = 0; i < hashValues.size(); i++) {
                 if (value == hashValues.get(i)) {
-                    ++freq;
+                    freq++;
                 }
+                
             }
             
             System.out.println("\t freq " + freq);
+            sum += freq;
             
             //De frequentie moet weer op 0 zodat we opnieuw kunnen tellen bij de andere values.
             freq = 0;
             
         }
         
+        System.out.println("Gemiddelde is " + sum / 96);
+        
         SeperateChainingHashST sc = new SeperateChainingHashST();
         LinearProbing lp = new LinearProbing();
+        QuadraticProbing qp = new QuadraticProbing();
         
   
         for (int i = 0; i < studentArray.length; i++) {
-            int key = Math.abs(studentArray[i].hashCode() % 97);
-            String value = studentArray[i].getLdap();
+
+//            String key = studentArray[i].getLdap();
+            Student key = studentArray[i];
+            int value = studentArray[i].getEcts();
             
             sc.put(key, value);
             lp.put(key, value);
+            qp.put(key, value);
 
         } 
+       
+        for (int i = 0; i < studentArray.length; i++) {
+            
+            sc.printCollisionsForKey(i);
+            
+        }
         
         int firstKey = sc.firstKey();
-        
-        sc.getAll(firstKey);
-        
+
+        lp.printCol();
+        qp.printCol();
+//        sc.printCollisionsForKey(firstKey);
+        System.out.println("Separate Chaining Collisions: " + sc.printCol());
     }
     
 }

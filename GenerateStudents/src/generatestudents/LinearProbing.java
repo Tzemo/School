@@ -12,9 +12,10 @@ package generatestudents;
 public class LinearProbing<Key, Value> {
 
     private int N;
-    private int M = 128;
+    private int M = 15401;
     private Key[] keys;
     private Value[] vals;
+    private int cols = 0;
 
     public LinearProbing() {
         keys = (Key[]) new Object[M];
@@ -23,35 +24,58 @@ public class LinearProbing<Key, Value> {
     }
 
     private int hash(Key key) {
-        return (key.hashCode() & 0x7fffffff) % M;
+
+        String ldap = key.toString();
+        
+        int hash = 13;
+        
+        for (int i = 0; i < ldap.length(); i++) {
+            hash = 31 * hash + ldap.charAt(i);
+        }
+
+        return (hash & 0x7fffffff) % M;
+
+
     }
 
     public void put(Key key, Value val) {
         int i;
-        
+
         for (i = hash(key); keys[i] != null; i = (i + 1) % M) {
+
             if (keys[i].equals(key)) {
                 vals[i] = val;
                 return;
+            } else {
+                cols++;
             }
         }
+
         keys[i] = key;
         vals[i] = val;
         N++;
-        
+
     }
-    
+
+    public int size() {
+        return N;
+    }
+
     public Value get(Key key) {
-        
-        for (int i = hash(key); keys[i] != null; i = (i + 1) % M) { 
-            
+
+        for (int i = hash(key); keys[i] != null; i = (i + 1) % M) {
+
             if (keys[i].equals(key)) {
                 return vals[i];
             }
-            
+
         }
         return null;
-        
+
+    }
+
+    public void printCol() {
+        System.out.println("Linear Probing Collisions: " + cols);
     }
 
 }
