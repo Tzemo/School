@@ -43,7 +43,6 @@ public class GenerateStudents {
         
         //De frequentie
         int freq = 0;
-        int sum = 0;
         
         for (int value : uniqueValues) {
             
@@ -56,44 +55,28 @@ public class GenerateStudents {
             }
             
             System.out.println("\t freq " + freq);
-            sum += freq;
-            
+
             //De frequentie moet weer op 0 zodat we opnieuw kunnen tellen bij de andere values.
             freq = 0;
             
         }
-        
-        System.out.println("Gemiddelde is " + sum / 96);
-        
-        SeperateChainingHashST sc = new SeperateChainingHashST();
+   
+        SeparateChainingHashST sp = new SeparateChainingHashST();
         LinearProbing lp = new LinearProbing();
         QuadraticProbing qp = new QuadraticProbing();
         
-  
-        for (int i = 0; i < studentArray.length; i++) {
-
-//            String key = studentArray[i].getLdap();
-            Student key = studentArray[i];
-            int value = studentArray[i].getEcts();
-            
-            sc.put(key, value);
-            lp.put(key, value);
-            qp.put(key, value);
-
-        } 
-       
         for (int i = 0; i < studentArray.length; i++) {
             
-            sc.printCollisionsForKey(i);
+            sp.put(studentArray[i].getLdap(), studentArray[i].getEcts());
+            lp.put(studentArray[i].getLdap(), studentArray[i].getEcts());
+            qp.put(studentArray[i].getLdap(), studentArray[i].getEcts());
             
         }
         
-        int firstKey = sc.firstKey();
-
+        sp.printCol();
         lp.printCol();
         qp.printCol();
-//        sc.printCollisionsForKey(firstKey);
-        System.out.println("Separate Chaining Collisions: " + sc.printCol());
+
     }
     
 }

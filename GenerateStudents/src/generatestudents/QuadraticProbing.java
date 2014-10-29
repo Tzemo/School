@@ -12,7 +12,7 @@ package generatestudents;
 public class QuadraticProbing<Key, Value> {
 
     private int N;
-    private int M = 15401;
+    private int M = 11701;
     private Key[] keys;
     private Value[] vals;
     private int cols = 0;
@@ -26,41 +26,42 @@ public class QuadraticProbing<Key, Value> {
 
     private int hash(Key key) {
         
-        String ldap = key.toString();
-        
-        int hash = 13;
-        
-        for (int i = 0; i < ldap.length(); i++) {
-            hash = 31 * hash + ldap.charAt(i);
+         int hash = 7;
+        String strKey = key.toString();
+        for (int i = 0; i < strKey.length(); i++) {
+            hash = ((31 * hash) + strKey.charAt(i)) % M; 
         }
 
-        return (hash & 0x7fffffff) % M;
+        return hash;
 
 
         
     }
 
     public void put(Key key, Value val) {
-        //i = (int) (i + Math.pow(j, 2)) % M
+
         int i;
         int j = 1;
+        
         for (i = hash(key); keys[i] != null; i = (int) (i + Math.pow(j, 2)) % M) {
 
-            if (keys[i].equals(key)) {
-                vals[i] = val;
-                return;
+            if (hash(keys[i]) == hash(key)) {
 
-            } else {
                 cols++;
+                return;
+            } else {
+                
                 j++;
             }
 
         }
+        
         keys[i] = key;
         vals[i] = val;
         N++;
 
     }
+    
 
     public int size() {
         return N;
