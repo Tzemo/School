@@ -12,7 +12,7 @@ package generatestudents;
 public class LinearProbing<Key, Value> {
 
     private int N;
-    private int M = 11701;
+    private int M = 10501;
     private Key[] keys;
     private Value[] vals;
     private int cols = 0;
@@ -25,20 +25,24 @@ public class LinearProbing<Key, Value> {
 
     private int hash(Key key) {
 
-         int hash = 7;
-        String strKey = key.toString();
-        for (int i = 0; i < strKey.length(); i++) {
-            hash = ((31 * hash) + strKey.charAt(i)) % M; 
-        }
+        String ldap = key.toString();
+        
+      
+        int hash = 31;
 
-        return hash;
+        for (int i = 0; i < ldap.length(); i++) {
+            hash = (hash * 37 + ldap.charAt(i)) * hash ;
+   
+        }
+        
+       return (hash & 0x7fffffff) % M;
 
     }
 
    public void put(Key key, Value val) {
         int i;
         for (i = hash(key); keys[i] != null; i = (i + 1) % M) {
-            if (hash(key) == (hash(keys[i]))) {
+            if (hash(keys[i]) == i) {
                 cols++;
             }
         }

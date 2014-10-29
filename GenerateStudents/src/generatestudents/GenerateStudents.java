@@ -64,19 +64,22 @@ public class GenerateStudents {
         SeparateChainingHashST sp = new SeparateChainingHashST();
         LinearProbing lp = new LinearProbing();
         QuadraticProbing qp = new QuadraticProbing();
+        SepChain spp = new SepChain();
         
         for (int i = 0; i < studentArray.length; i++) {
             
             sp.put(studentArray[i].getLdap(), studentArray[i].getEcts());
             lp.put(studentArray[i].getLdap(), studentArray[i].getEcts());
             qp.put(studentArray[i].getLdap(), studentArray[i].getEcts());
+            spp.put(studentArray[i].getLdap(), studentArray[i].getEcts());
             
+           
         }
         
         sp.printCol();
         lp.printCol();
         qp.printCol();
-
+    
     }
     
 }

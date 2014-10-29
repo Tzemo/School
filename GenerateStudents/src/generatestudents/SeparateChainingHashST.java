@@ -14,7 +14,7 @@ package generatestudents;
  */
 public class SeparateChainingHashST<Key, Value> {
     
-    private int M = 11701;
+    private int M = 10501;
     private int N = 0;
     private SequentialSearchST<Key, Value>[] st;
     private int cols;
@@ -27,13 +27,17 @@ public class SeparateChainingHashST<Key, Value> {
     } 
 
     private int hash(Key key) {
-       int hash = 7;
-        String strKey = key.toString();
-        for (int i = 0; i < strKey.length(); i++) {
-            hash = ((31 * hash) + strKey.charAt(i)) % M; 
+             
+        String ldap = key.toString();
+        
+        int hash = 13;
+       
+        for (int i = 0; i < ldap.length(); i++) {
+            hash = (hash * 37 + ldap.charAt(i)) * hash ;
         }
+        
+        return (hash & 0x7fffffff) % M;
 
-        return hash;
 
     } 
 
@@ -57,12 +61,9 @@ public class SeparateChainingHashST<Key, Value> {
     public void put(Key key, Value val) {
 
         int i = hash(key);
-        if (!st[i].contains(key)) {
-            N++;
-        }
-        int cols = st[i].put(key, val);
-        
-        this.cols += cols;
+        this.cols += st[i].put(key, val);
+        N++;
+     
     } 
 
     public void printCol() {

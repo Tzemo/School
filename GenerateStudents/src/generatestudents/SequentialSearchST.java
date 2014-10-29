@@ -13,7 +13,7 @@ package generatestudents;
 public class SequentialSearchST<Key, Value> {
  
     private int N;          
-    private int M = 11701;
+    private int M = 10501;
     private Node first;     
 
  
@@ -33,13 +33,16 @@ public class SequentialSearchST<Key, Value> {
     }
 
     private int hash(Key key) {
-         int hash = 7;
-        String strKey = key.toString();
-        for (int i = 0; i < strKey.length(); i++) {
-            hash = ((31 * hash) + strKey.charAt(i)) % M; 
+        
+        String ldap = key.toString();
+        
+        int hash = 13;
+   
+        for (int i = 0; i < ldap.length(); i++) {
+            hash = (hash * 37 + ldap.charAt(i)) * hash ;
         }
-
-        return hash;
+        
+        return (hash & 0x7fffffff) % M;
 
     } 
     

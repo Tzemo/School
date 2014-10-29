@@ -29,11 +29,11 @@ public class Student {
     public int hashCode() {
 
         hash = 13;
-        
+   
         for (int i = 0; i < ldap.length(); i++) {
-            hash = 31 * hash + ldap.charAt(i);
+            hash = (hash * 37 + ldap.charAt(i)) * hash ;
         }
-
+        
         return hash;
        
     }
