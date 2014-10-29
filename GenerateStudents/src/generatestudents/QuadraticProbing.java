@@ -31,7 +31,7 @@ public class QuadraticProbing<Key, Value> {
         int hash = 13;
         int mod = 41;
         for (int i = 0; i < ldap.length(); i++) {
-            hash = (hash * 37 + ldap.charAt(i)) * hash ;
+            hash = (hash * 37 + ldap.charAt(i) * 79) * 59;
             
         }
         

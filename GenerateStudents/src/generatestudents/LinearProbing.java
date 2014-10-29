@@ -31,8 +31,8 @@ public class LinearProbing<Key, Value> {
         int hash = 31;
 
         for (int i = 0; i < ldap.length(); i++) {
-            hash = (hash * 37 + ldap.charAt(i)) * hash ;
-   
+            
+            hash = (hash * 37 + ldap.charAt(i) * 79) * 59;
         }
         
        return (hash & 0x7fffffff) % M;
